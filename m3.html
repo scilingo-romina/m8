@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calcular el interés generado</title>
+</head>
+<body>
+    <h1>Calculadora de Crédito</h1>
+    <p>Ingresa el capital necesario en pesos y el plazo de tiempo para pagar el crédito en días:</p>
+    
+    <label for="capital">Capital necesario (en pesos):</label>
+    <input type="number" id="capital" placeholder="Capital en pesos"><br>
+    
+    <label for="plazo">Plazo de tiempo (en días):</label>
+    <input type="number" id="plazo" placeholder="Plazo en días"><br>
+    
+    <button onclick="calcularCredito()">Calcular</button>
+    
+    <p>Resultado: <span id="resultado"></span> pesos</p>
+
+    <script>
+        function calcularCredito() {
+            const capital = parseFloat(document.getElementById("capital").value);
+            const plazo = parseInt(document.getElementById("plazo").value);
+
+            const tasaPlan001 = 15;
+            const tasaPlan002 = 10;
+            const tasaPlan003 = 23;
+
+            const interesPlan001 = (capital * plazo * tasaPlan001) / 100 / 30; // Dividido por 30 para convertir días en meses
+            const interesPlan002 = (capital * plazo * tasaPlan002) / 100 / 30;
+            const interesPlan003 = (capital * plazo * tasaPlan003) / 100 / 30;
+
+            const totalPlan001 = capital + interesPlan001;
+            const totalPlan002 = capital + interesPlan002;
+            const totalPlan003 = capital + interesPlan003;
+
+            let resultado = "";
+
+            if (totalPlan001 < totalPlan002 && totalPlan001 < totalPlan003) {
+                resultado = `El Plan 001 conviene más. Total a pagar: ${totalPlan001.toFixed(2)} pesos.`;
+            } else if (totalPlan002 < totalPlan001 && totalPlan002 < totalPlan003) {
+                resultado = `El Plan 002 conviene más. Total a pagar: ${totalPlan002.toFixed(2)} pesos.`;
+            } else {
+                resultado = `El Plan 003 conviene más. Total a pagar: ${totalPlan003.toFixed(2)} pesos.`;
+            }
+
+            document.getElementById("resultado").textContent = resultado;
+        }
+    </script>
+</body>

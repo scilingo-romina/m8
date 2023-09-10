@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M8  Calculadora de Flujo de Caja  </title>
+</head>
+
+<body>
+    <h1>Calculadora de Flujo de Caja</h1>
+    <p>Ingresa los flujos de caja de ingresos y egresos de los últimos 12 meses:</p>
+    
+    <!-- Array de nombres de meses -->
+    <script>
+        const meses = [
+            "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+            "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+        ];
+    </script>
+    
+    <!-- Crear campos para cada mes -->
+    <table>
+        <thead>
+            <tr>
+                <th>Mes</th>
+                <th>Ingresos</th>
+                <th>Egresos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <script>
+                for (let i = 0; i < 12; i++) {
+                    document.write(`
+                        <tr>
+                            <td>${meses[i]}</td>
+                            <td><input type="number" id="ingreso${i}" placeholder="Ingresos"></td>
+                            <td><input type="number" id="egreso${i}" placeholder="Egresos"></td>
+                        </tr>
+                    `);
+                }
+            </script>
+        </tbody>
+    </table>
+    
+    <button onclick="calcularFlujoCaja()">Calcular</button>
+    <p id="resultado"></p>
+
+    <script>
+        function calcularFlujoCaja() {
+            const ingresos = [];
+            const egresos = [];
+            for (let i = 0; i < 12; i++) {
+                const ingreso = parseFloat(document.getElementById(`ingreso${i}`).value) || 0;
+                const egreso = parseFloat(document.getElementById(`egreso${i}`).value) || 0;
+                ingresos.push(ingreso);
+                egresos.push(egreso);
+            }
+
+            const resultados = [];
+            for (let i = 0; i < 12; i++) {
+                const diferencia = ingresos[i] - egresos[i];
+                resultados.push(`${meses[i]}: ${diferencia >= 0 ? "Ganancia" : "Pérdida"}`);
+            }
+            
+            document.getElementById("resultado").textContent = resultados.join('\n');
+        }
+    </script>
+</body>
+</html>
+</html>

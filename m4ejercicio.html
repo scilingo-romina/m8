@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Estado de Flujo de Caja</title>
+    </head>
+    <body>
+        <h1>Calculadora de Estado de Flujo de Caja</h1>
+        <p>Ingresa los flujos de caja de ingresos y egresos:</p>
+        
+        <label for="ingresos">Ingresos:</label>
+        <input type="number" id="ingresos" placeholder="Ingresos en pesos"><br>
+        
+        <label for="egresos">Egresos:</label>
+        <input type="number" id="egresos" placeholder="Egresos en pesos"><br>
+        
+        <button onclick="calcularEstado()">Calcular</button>
+        
+        <p>Resultado: <span id="resultado"></span></p>
+    
+        <script>
+            function calcularEstado() {
+                const ingresos = parseFloat(document.getElementById("ingresos").value);
+                const egresos = parseFloat(document.getElementById("egresos").value);
+    
+                let resultado = 0; // Inicializar con 0 por defecto
+    
+                if (ingresos - egresos > 0) {
+                    resultado = 1; // Ganancias
+                } else if (ingresos - egresos < 0) {
+                    resultado = -1; // Pérdidas
+                }
+    
+                document.getElementById("resultado").textContent = resultado;
+            }
+        </script>
+    </body>
+    </html>
+    
+
+</body>
+</html>
